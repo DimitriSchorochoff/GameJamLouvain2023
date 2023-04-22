@@ -34,7 +34,12 @@ func _process(delta):
 
 func _physics_process(delta: float) -> void:
 	
-	animationIndex = str(clamp(GameManager.NPC_KILL_COUNT,1, 3))
+	if GameManager.RAGE < GameManager.RAGE_CEIL_1:
+		 animationIndex = "1"
+	elif GameManager.RAGE < GameManager.RAGE_CEIL_2:
+		animationIndex = "2"
+	else:
+		animationIndex = "3"
 	
 	var _horizontal_direction = (
 		Input.get_action_strength("move_right") - 
@@ -87,6 +92,12 @@ func _physics_process(delta: float) -> void:
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
 
 
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("PowerUp1"):
+		GameManager.SUBSTRACT_RAGE(100)
+	elif area.is_in_group("PowerUp2"):
+		GameManager.SUBSTRACT_RAGE_WITHOUT_CEIL(300)
+		
 func land():
 	animationPlayer.play("Land"+animationIndex)
 	finishLanding = OS.get_ticks_msec()+200
@@ -94,4 +105,3 @@ func land():
 	get_parent().add_child(shockWave)
 	shockWave.global_position = global_position
 	
-

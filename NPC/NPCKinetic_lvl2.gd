@@ -3,18 +3,15 @@ extends KinematicBody2D
 const UP_DIRECTION := Vector2.UP
 
 export var speed = 40
-export var direction := Vector2.LEFT 
-export var gravity := 450.0
+export var direction := Vector2.LEFT
+export var gravity := 150.0
+export var jump_strength := 100.0
 export var face_h := 1.0
 
 onready var _velocity = direction*speed
 onready var sprite = $Sprite
 
 var BloodEffect = preload("res://BloodParticleEffect.tscn")
-
-func _ready():
-	pass
-	#direction.x = int(rand_range(-1, 1))
 
 func _process(delta):
 	sprite.flip_h = (face_h == 1)
@@ -36,6 +33,9 @@ func _physics_process(delta: float) -> void:
 	if is_on_wall():
 		direction.x *= -1
 		_velocity.x = direction.x * speed
+
+	if is_on_floor():
+		_velocity.y -= jump_strength
 
 
 func _on_Area2D_area_entered(area):
