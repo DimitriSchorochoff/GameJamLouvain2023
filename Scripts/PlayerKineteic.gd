@@ -66,4 +66,3 @@ func _physics_process(delta: float) -> void:
 func _on_Area2D_area_entered(area):		
 	if area.is_in_group("NPC"):
 		GameManager.NPC_KILL_COUNT += 1
-		print("Player collide NPC")
