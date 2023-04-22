@@ -32,7 +32,7 @@ func _process(delta):
 
 func _physics_process(delta: float) -> void:
 	
-	animationIndex = GameManager.NPC_KILL_COUNT
+	animationIndex = str(GameManager.NPC_KILL_COUNT+1)
 	
 	var _horizontal_direction = (
 		Input.get_action_strength("move_right") - 
