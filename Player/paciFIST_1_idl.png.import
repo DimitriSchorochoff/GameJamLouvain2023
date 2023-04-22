@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/groundfloor.jpg-e9f2132280eddeae95ccb671cc243c23.stex"
+path="res://.import/paciFIST_1_idl.png-1300e24e52936284c10d3cd87fcb9e6e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://groundfloor.jpg"
-dest_files=[ "res://.import/groundfloor.jpg-e9f2132280eddeae95ccb671cc243c23.stex" ]
+source_file="res://Player/paciFIST_1_idl.png"
+dest_files=[ "res://.import/paciFIST_1_idl.png-1300e24e52936284c10d3cd87fcb9e6e.stex" ]
 
 [params]
 

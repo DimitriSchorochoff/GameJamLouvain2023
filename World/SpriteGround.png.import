@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SpriteGround.png-261139872dd90d9ee6c2c5c6ad71caf1.stex"
+path="res://.import/SpriteGround.png-2c0f6d34f9cfd90a30c2f0604d340637.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpriteGround.png"
-dest_files=[ "res://.import/SpriteGround.png-261139872dd90d9ee6c2c5c6ad71caf1.stex" ]
+source_file="res://World/SpriteGround.png"
+dest_files=[ "res://.import/SpriteGround.png-2c0f6d34f9cfd90a30c2f0604d340637.stex" ]
 
 [params]
 
