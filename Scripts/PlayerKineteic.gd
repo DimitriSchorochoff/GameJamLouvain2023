@@ -49,6 +49,7 @@ func _physics_process(delta: float) -> void:
 		animationPlayer.play("Run")
 		particleRun.emitting = true
 	
+
 	if is_jumping:
 		_jumps_made += 1
 		_velocity.y -= jump_strenght
@@ -60,3 +61,9 @@ func _physics_process(delta: float) -> void:
 		_jumps_made = 0
 		
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
+
+
+func _on_Area2D_area_entered(area):		
+	if area.is_in_group("NPC"):
+		GameManager.NPC_KILL_COUNT += 1
+		print("Player collide NPC")
