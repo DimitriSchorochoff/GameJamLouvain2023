@@ -12,10 +12,7 @@ var _velocity := Vector2.ZERO
 export var face_h := 1.0
 
 func _physics_process(delta: float) -> void:
-	var _horizontal_direction = (
-		Input.get_action_strength("move_right") - 
-		Input.get_action_strength("move_left")
-	)
+	var _horizontal_direction = 0
 	
 	if _horizontal_direction != 0.0:
 		face_h = _horizontal_direction/abs(_horizontal_direction)
@@ -29,17 +26,11 @@ func _physics_process(delta: float) -> void:
 	var is_idling := is_zero_approx(_velocity.x) and is_on_floor()
 	var is_running := is_on_floor() and not is_zero_approx(_velocity.x)
 	
-	if is_jumping:
-		_jumps_made += 1
-		_velocity.y -= jump_strenght
-		
-	elif is_idling or is_running:
-		_jumps_made = 0
 		
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
 
 
-func _on_Area2D_area_entered(area):		
-	if area.is_in_group("NPC"):
-		GameManager.NPC_KILL_COUNT += 1
-		print("Player collide NPC")
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("Player"):
+		print("NPC collide player")
+		self.queue_free()

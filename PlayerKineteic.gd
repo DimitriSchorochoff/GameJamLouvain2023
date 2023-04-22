@@ -3,25 +3,20 @@ extends KinematicBody2D
 const UP_DIRECTION := Vector2.UP
 
 export var speed = 200
-export var jump_strenght := 100.0
-export var gravity := 450.0
+export var jump_strenght := 1500.0
+export var gravity := 4500.0
 
 var _jumps_made := 0
 var _velocity := Vector2.ZERO
-
-export var face_h := 1.0
 
 func _physics_process(delta: float) -> void:
 	var _horizontal_direction = (
 		Input.get_action_strength("move_right") - 
 		Input.get_action_strength("move_left")
 	)
-	
-	if _horizontal_direction != 0.0:
-		face_h = _horizontal_direction/abs(_horizontal_direction)
 
 	_velocity.x = _horizontal_direction * speed
-	_velocity.y += gravity * delta
+	_velocity.y = gravity * delta
 
 	var is_falling := _velocity.y > 0.0 and not is_on_floor()
 	var is_jumping := Input.is_action_just_pressed("jump") and is_on_floor()
@@ -37,9 +32,3 @@ func _physics_process(delta: float) -> void:
 		_jumps_made = 0
 		
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
-
-
-func _on_Area2D_area_entered(area):		
-	if area.is_in_group("NPC"):
-		GameManager.NPC_KILL_COUNT += 1
-		print("Player collide NPC")
