@@ -32,6 +32,7 @@ const ShockWave = preload("res://player/ShockWave.tscn")
 const Laser = preload("res://player/laser.tscn")
 
 onready var GameManager = get_node("/root/GameManager")
+onready var ScreenShake = get_tree().current_scene.get_node("Camera2D")
 
 func _process(delta):
 	sprite.flip_h = face_h == 1
@@ -111,6 +112,7 @@ func shoot():
 	nextLaserNow = OS.get_ticks_msec() + laserCD*1000 #millisecond
 
 func land():
+	ScreenShake.shake(6,20)
 	animationPlayer.play("Land"+animationIndex)
 	finishLanding = OS.get_ticks_msec()+200
 	var shockWave = ShockWave.instance()
