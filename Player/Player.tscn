@@ -1,14 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/PlayerKineteic.gd" type="Script" id=1]
-[ext_resource path="res://Player/paciFIST_1_idl.png" type="Texture" id=2]
+[ext_resource path="res://paciFIST_complete.png" type="Texture" id=2]
 [ext_resource path="res://particle_dust01.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.5, 6.5 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "Idle"
+resource_name = "Idle1"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -21,6 +21,39 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Idle2"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Land2"
+length = 0.269
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -39,7 +72,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "Run"
+resource_name = "Run1"
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -53,6 +86,23 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Run2"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 3, 2 ]
 }
 
 [sub_resource type="CanvasItemMaterial" id=5]
@@ -79,12 +129,15 @@ shape = SubResource( 1 )
 position = Vector2( 0, -8 )
 z_index = 2
 texture = ExtResource( 2 )
-hframes = 3
+hframes = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 2 )
+anims/Idle1 = SubResource( 2 )
+anims/Idle2 = SubResource( 7 )
+anims/Land2 = SubResource( 8 )
 anims/RESET = SubResource( 3 )
-anims/Run = SubResource( 4 )
+anims/Run1 = SubResource( 4 )
+anims/Run2 = SubResource( 9 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 material = SubResource( 5 )

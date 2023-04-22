@@ -34,6 +34,7 @@ anim_speed = 115.26
 
 [node name="Particles2D" type="Particles2D"]
 material = SubResource( 1 )
+emitting = false
 amount = 1
 lifetime = 20.0
 one_shot = true
