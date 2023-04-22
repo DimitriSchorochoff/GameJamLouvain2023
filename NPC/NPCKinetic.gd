@@ -11,6 +11,8 @@ var _velocity := Vector2.ZERO
 
 export var face_h := 1.0
 
+var BloodEffect = preload("res://BloodParticleEffect.tscn")
+
 func _physics_process(delta: float) -> void:
 	var _horizontal_direction = 0
 	
@@ -33,4 +35,7 @@ func _physics_process(delta: float) -> void:
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
 		print("NPC collide player")
+		var bloodEffect = BloodEffect.instance()
+		get_tree().current_scene.add_child(bloodEffect)
+		bloodEffect.global_position = global_position
 		self.queue_free()

@@ -16,7 +16,7 @@ gradient = SubResource( 2 )
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.285246, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture" id=5]
 gradient = SubResource( 4 )
@@ -30,12 +30,12 @@ angle = 570.0
 angle_random = 1.0
 color_ramp = SubResource( 5 )
 color_initial_ramp = SubResource( 3 )
+anim_speed = 115.26
 
 [node name="Particles2D" type="Particles2D"]
 material = SubResource( 1 )
-emitting = false
 amount = 1
-lifetime = 47.98
+lifetime = 20.0
 one_shot = true
 process_material = SubResource( 6 )
 texture = ExtResource( 1 )
