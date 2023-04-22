@@ -31,6 +31,9 @@ onready var TititiSFX = $Tititi #sons
 onready var ShootSFX = $Shoot #sons
 onready var JumpSFX = $Jump #sons
 onready var LandSFX = $Land #sons
+onready var Burst1SFX = $Burst1 #sons
+onready var Burst2SFX = $Burst2 #sons
+onready var Burst3SFX = $Burst3 #sons
 
 const ShockWave = preload("res://player/ShockWave.tscn")
 const Laser = preload("res://player/laser.tscn")
@@ -89,6 +92,13 @@ func _physics_process(delta: float) -> void:
 		
 
 	if is_jumping:
+		var rand = rand_range(1,100)
+		if (rand<45):
+			Burst1SFX.play()
+		elif (rand<90):
+			Burst2SFX.play()
+		else:
+			Burst3SFX.play()
 		JumpSFX.play()
 		_jumps_made += 1
 		_velocity.y -= jump_strenght

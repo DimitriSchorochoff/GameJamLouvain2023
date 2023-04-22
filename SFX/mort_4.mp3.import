@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mort_4.mp3-ef30d98710601368ccdeb3a8596aa960.mp3str"
+
+[deps]
+
+source_file="res://SFX/mort_4.mp3"
+dest_files=[ "res://.import/mort_4.mp3-ef30d98710601368ccdeb3a8596aa960.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
