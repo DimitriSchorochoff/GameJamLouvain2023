@@ -8,6 +8,8 @@ export var fric = 1500.0
 export var jump_strenght := 600.0
 export var gravity := 1700.0
 
+
+
 var _jumps_made := 0
 var _velocity := Vector2.ZERO
 
@@ -23,10 +25,15 @@ onready var sprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var particleRun = $Particles2D
 
+onready var GameManager = get_node("/root/GameManager")
+
 func _process(delta):
 	sprite.flip_h = face_h == 1
 
 func _physics_process(delta: float) -> void:
+	
+	animationIndex = GameManager.NPC_KILL_COUNT
+	
 	var _horizontal_direction = (
 		Input.get_action_strength("move_right") - 
 		Input.get_action_strength("move_left")
