@@ -1,14 +1,9 @@
 extends Sprite
 
 
-export onready var kinematic = $PlayerKineteic 
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+var kinematic 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	flip_h = kinematic.face_h == 1
+	kinematic = get_parent().PlayerKineteic
+	kinematic.flip_h = kinematic.face_h == 1
