@@ -32,7 +32,7 @@ func _process(delta):
 
 func _physics_process(delta: float) -> void:
 	
-	animationIndex = GameManager.NPC_KILL_COUNT
+	animationIndex = str(clamp(GameManager.NPC_KILL_COUNT,1, 3))
 	
 	var _horizontal_direction = (
 		Input.get_action_strength("move_right") - 
@@ -63,15 +63,13 @@ func _physics_process(delta: float) -> void:
 		if !landing:
 			landing = true
 
-	if (OS.get_ticks_msec() < finishLanding):
-		return
-		
-	if is_idling:
-		animationPlayer.play("Idle"+animationIndex)
-		particleRun.emitting = false
-	elif is_running:
-		animationPlayer.play("Run"+animationIndex)
-		particleRun.emitting = true
+	if (OS.get_ticks_msec() > finishLanding):
+		if is_idling:
+			animationPlayer.play("Idle"+animationIndex)
+			particleRun.emitting = false
+		elif is_running:
+			animationPlayer.play("Run"+animationIndex)
+			particleRun.emitting = true
 		
 
 	if is_jumping:
