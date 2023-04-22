@@ -27,6 +27,10 @@ var nextLaserNow = 0.0
 onready var sprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var particleRun = $Particles2D
+onready var TititiSFX = $Tititi #sons
+onready var ShootSFX = $Shoot #sons
+onready var JumpSFX = $Jump #sons
+onready var LandSFX = $Land #sons
 
 const ShockWave = preload("res://player/ShockWave.tscn")
 const Laser = preload("res://player/laser.tscn")
@@ -43,6 +47,8 @@ func _physics_process(delta: float) -> void:
 	
 	if OS.get_ticks_msec() > nextLaserNow and animationIndex == "3":
 		shoot()
+	elif OS.get_ticks_msec() > nextLaserNow-800 and !TititiSFX.playing and animationIndex == "3":
+		TititiSFX.play()
 	
 	var _horizontal_direction = (
 		Input.get_action_strength("move_right") - 
@@ -83,6 +89,7 @@ func _physics_process(delta: float) -> void:
 		
 
 	if is_jumping:
+		JumpSFX.play()
 		_jumps_made += 1
 		_velocity.y -= jump_strenght
 	
@@ -95,6 +102,7 @@ func _physics_process(delta: float) -> void:
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
 
 func evolve():
+	
 	if (GameManager.NPC_KILL_COUNT > 12):
 		print("you killed all")
 	elif (GameManager.NPC_KILL_COUNT > 8):
@@ -105,6 +113,7 @@ func evolve():
 		animationIndex = "1"
 
 func shoot():
+	ShootSFX.play()
 	var laser = Laser.instance()
 	get_parent().add_child(laser)
 	laser.global_position = global_position
@@ -112,6 +121,7 @@ func shoot():
 	nextLaserNow = OS.get_ticks_msec() + laserCD*1000 #millisecond
 
 func land():
+	LandSFX.play()
 	ScreenShake.shake(6,20)
 	animationPlayer.play("Land"+animationIndex)
 	finishLanding = OS.get_ticks_msec()+200

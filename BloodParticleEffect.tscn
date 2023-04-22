@@ -35,9 +35,10 @@ anim_speed = 115.26
 
 [node name="Particles2D" type="Particles2D"]
 material = SubResource( 1 )
+position = Vector2( 0, -8.324 )
 amount = 1
-lifetime = 20.0
+lifetime = 12.0
 process_material = SubResource( 6 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
-timer = 19.0
+timer = 11.0
