@@ -7,11 +7,11 @@ var loop_time = 1.0
 var loop_time_incr = 0.01
 
 var spawn_pr_1 = 0.25
-var spawn_pr_inc_1 = 0.0001
+var spawn_pr_inc_1 = 0.005
 var N_npc1_spawn = 0
 
-var spawn_pr_2 = 0.75
-var spawn_pr_inc_2 = 0.0001
+var spawn_pr_2 = 0.1
+var spawn_pr_inc_2 = 0.0075
 var N_npc2_spawn = 0
 
 var _timer = null
@@ -31,12 +31,14 @@ func _ready():
 	
 func onLoop():
 	if randf() < spawn_pr_1 :
+		print("Spawn 1")
 		N_npc1_spawn+=1
 		
 	if randf() < spawn_pr_2 : 
+		print("Spawn 2")
 		N_npc2_spawn += 1
 
-	var npc2spawn = N_npc1_spawn > 0 && N_npc2_spawn > 0
+	var npc2spawn = N_npc1_spawn > 0 || N_npc2_spawn > 0
 
 	if fully_closed and npc2spawn:
 		fully_closed = false
@@ -64,10 +66,10 @@ func onLoop():
 
 
 func spawn_npc1():
-	var npc1 = NPC_1.instance()
-	get_parent().add_child(npc1)
 	var num = int(floor(rand_range(1, 5.99999)))
 	if num != 3:
+		var npc1 = NPC_1.instance()
+		get_parent().add_child(npc1)
 		npc1.get_node("AnimationPlayer").play("NPC"+String(num))
 		npc1.position = position
 		N_npc1_spawn -= 1 

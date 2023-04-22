@@ -3,7 +3,7 @@ extends KinematicBody2D
 const UP_DIRECTION := Vector2.UP
 
 export var speed = 40
-export var direction := Vector2.LEFT 
+var direction := Vector2(sign(rand_range(-1, 1)), 0)
 export var gravity := 450.0
 export var face_h := 1.0
 
