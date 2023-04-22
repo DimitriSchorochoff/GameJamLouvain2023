@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/paciFIST_1_idl.png-f79751c0799c6b1b534e678499737394.stex"
+path="res://.import/paciFIST_2.png-52ec1d8a041b69c9251086fadb0f1e95.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://paciFIST_1_idl.png"
-dest_files=[ "res://.import/paciFIST_1_idl.png-f79751c0799c6b1b534e678499737394.stex" ]
+source_file="res://Asset/Player/paciFIST_2.png"
+dest_files=[ "res://.import/paciFIST_2.png-52ec1d8a041b69c9251086fadb0f1e95.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0
