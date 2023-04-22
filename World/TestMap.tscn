@@ -11,28 +11,25 @@ extents = Vector2( 176, 8 )
 [node name="TestMap" type="Node2D"]
 
 [node name="TextureProgress" parent="." instance=ExtResource( 4 )]
-margin_left = -148.0
-margin_top = -72.0
-margin_right = -22.0
-margin_bottom = -40.0
+margin_left = -232.0
+margin_top = -136.0
+margin_right = -106.0
+margin_bottom = -104.0
 
-[node name="NPCTest" parent="." instance=ExtResource( 3 )]
-position = Vector2( 89, 55 )
+[node name="NPC" parent="." instance=ExtResource( 3 )]
+position = Vector2( 97, 72 )
 
-[node name="NPCTest2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 25, 56 )
+[node name="NPC2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 65, 72 )
 
-[node name="NPCTest3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 52, 56 )
-
-[node name="NPCTest4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 121, 55 )
+[node name="NPC3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 33, 72 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -1, 52 )
+position = Vector2( -56, 72 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( -43, 76 )
+position = Vector2( -24, 168 )
 __meta__ = {
 "_edit_group_": true
 }

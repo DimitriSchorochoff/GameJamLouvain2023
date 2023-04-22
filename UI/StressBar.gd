@@ -1,7 +1,7 @@
 extends TextureProgress
 
 const BAR_SPEED = 100
-var current_bar_value = 5
+var current_bar_value = 500
 var previous_kill_count = 0
 
 func _process(delta):
@@ -11,8 +11,6 @@ func _process(delta):
 	#scurrent_bar_value -= BAR_SPEED * delta
 	# Don't go below zero
 	current_bar_value = max(current_bar_value, 0)
-	
-	print(current_bar_value)
 	
 	# Assuming this is a node you have set up
 	self.value = current_bar_value
