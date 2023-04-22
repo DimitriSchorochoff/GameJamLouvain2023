@@ -38,7 +38,7 @@ func _process(delta):
 
 func _physics_process(delta: float) -> void:
 	
-	animationIndex = str(clamp(GameManager.NPC_KILL_COUNT,1, 3))
+	evolve()
 	
 	if OS.get_ticks_msec() > nextLaserNow and animationIndex == "3":
 		shoot()
@@ -92,6 +92,16 @@ func _physics_process(delta: float) -> void:
 		_jumps_made = 0
 		
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
+
+func evolve():
+	if (GameManager.NPC_KILL_COUNT > 12):
+		print("you killed all")
+	elif (GameManager.NPC_KILL_COUNT > 8):
+		animationIndex = "3"
+	elif (GameManager.NPC_KILL_COUNT > 3):
+		animationIndex = "2"
+	else:
+		animationIndex = "1"
 
 func shoot():
 	var laser = Laser.instance()
