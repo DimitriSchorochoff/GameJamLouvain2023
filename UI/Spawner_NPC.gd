@@ -43,6 +43,9 @@ func onLoop():
 		if N_npc1_spawn > 0:
 			var npc1 = NPC_1.instance()
 			get_parent().add_child(npc1)
+			var num = int(floor(rand_range(1, 5.99999)))
+			print(num)
+			npc1.get_node("AnimationPlayer").play("NPC"+String(num))
 			npc1.position = position
 			N_npc1_spawn -= 1 
 
