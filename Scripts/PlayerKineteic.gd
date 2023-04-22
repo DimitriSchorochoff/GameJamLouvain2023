@@ -19,13 +19,17 @@ var landing = false
 var finishLanding = 0.0
 
 
-var animationIndex = "2"
+var animationIndex = "1"
+
+export var laserCD = 5
+var nextLaserNow = 0.0
 
 onready var sprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var particleRun = $Particles2D
 
 const ShockWave = preload("res://player/ShockWave.tscn")
+const Laser = preload("res://player/laser.tscn")
 
 onready var GameManager = get_node("/root/GameManager")
 
@@ -35,6 +39,9 @@ func _process(delta):
 func _physics_process(delta: float) -> void:
 	
 	animationIndex = str(clamp(GameManager.NPC_KILL_COUNT,1, 3))
+	
+	if OS.get_ticks_msec() > nextLaserNow and animationIndex == "3":
+		shoot()
 	
 	var _horizontal_direction = (
 		Input.get_action_strength("move_right") - 
@@ -86,6 +93,12 @@ func _physics_process(delta: float) -> void:
 		
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
 
+func shoot():
+	var laser = Laser.instance()
+	get_parent().add_child(laser)
+	laser.global_position = global_position
+	laser.dir = face_h
+	nextLaserNow = OS.get_ticks_msec() + laserCD*1000 #millisecond
 
 func land():
 	animationPlayer.play("Land"+animationIndex)
