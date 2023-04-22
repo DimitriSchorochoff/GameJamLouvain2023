@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://blood.png" type="Texture" id=1]
+[ext_resource path="res://DestroyAfter.gd" type="Script" id=2]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
@@ -34,9 +35,9 @@ anim_speed = 115.26
 
 [node name="Particles2D" type="Particles2D"]
 material = SubResource( 1 )
-emitting = false
 amount = 1
 lifetime = 20.0
-one_shot = true
 process_material = SubResource( 6 )
 texture = ExtResource( 1 )
+script = ExtResource( 2 )
+timer = 20.0
