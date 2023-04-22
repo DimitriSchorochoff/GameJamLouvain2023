@@ -49,6 +49,13 @@ func _physics_process(delta: float) -> void:
 		shoot()
 	elif OS.get_ticks_msec() > nextLaserNow-800 and !TititiSFX.playing and animationIndex == "3":
 		TititiSFX.play()
+
+	if GameManager.RAGE < GameManager.RAGE_CEIL_1:
+		 animationIndex = "1"
+	elif GameManager.RAGE < GameManager.RAGE_CEIL_2:
+		animationIndex = "2"
+	else:
+		animationIndex = "3"
 	
 	var _horizontal_direction = (
 		Input.get_action_strength("move_right") - 
@@ -120,6 +127,12 @@ func shoot():
 	laser.dir = face_h
 	nextLaserNow = OS.get_ticks_msec() + laserCD*1000 #millisecond
 
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("PowerUp1"):
+		GameManager.SUBSTRACT_RAGE(100)
+	elif area.is_in_group("PowerUp2"):
+		GameManager.SUBSTRACT_RAGE_WITHOUT_CEIL(300)
+		
 func land():
 	LandSFX.play()
 	ScreenShake.shake(6,20)
@@ -129,4 +142,3 @@ func land():
 	get_parent().add_child(shockWave)
 	shockWave.global_position = global_position
 	
-
