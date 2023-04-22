@@ -43,7 +43,7 @@ script = ExtResource( 2 )
 timer = 0.4
 
 [node name="ShockWave" type="Sprite" parent="."]
-position = Vector2( 0, -8 )
+position = Vector2( 0, -2 )
 z_index = -1
 texture = ExtResource( 1 )
 hframes = 5

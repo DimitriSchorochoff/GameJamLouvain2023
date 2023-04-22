@@ -40,4 +40,4 @@ lifetime = 20.0
 process_material = SubResource( 6 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
-timer = 20.0
+timer = 19.0
