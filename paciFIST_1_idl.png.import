@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/human_1.png-8367115913f76abfdff677be844f64f5.stex"
+path="res://.import/paciFIST_1_idl.png-f79751c0799c6b1b534e678499737394.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://human_1.png"
-dest_files=[ "res://.import/human_1.png-8367115913f76abfdff677be844f64f5.stex" ]
+source_file="res://paciFIST_1_idl.png"
+dest_files=[ "res://.import/paciFIST_1_idl.png-f79751c0799c6b1b534e678499737394.stex" ]
 
 [params]
 
