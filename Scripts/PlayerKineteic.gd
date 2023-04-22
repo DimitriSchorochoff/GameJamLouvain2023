@@ -25,6 +25,8 @@ onready var sprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var particleRun = $Particles2D
 
+const ShockWave = preload("res://player/ShockWave.tscn")
+
 onready var GameManager = get_node("/root/GameManager")
 
 func _process(delta):
@@ -88,8 +90,8 @@ func _physics_process(delta: float) -> void:
 func land():
 	animationPlayer.play("Land"+animationIndex)
 	finishLanding = OS.get_ticks_msec()+200
+	var shockWave = ShockWave.instance()
+	get_parent().add_child(shockWave)
+	shockWave.global_position = global_position
 	
 
-func _on_Area2D_area_entered(area):		
-	if area.is_in_group("NPC"):
-		GameManager.NPC_KILL_COUNT += 1

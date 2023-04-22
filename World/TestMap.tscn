@@ -126,8 +126,6 @@ position = Vector2( -256, 60 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[node name="Decor10" type="Sprite" parent="."]
-z_index = -100
-
 [node name="Decor11" type="Sprite" parent="."]
+z_index = -100
 texture = ExtResource( 6 )

@@ -1,4 +1,4 @@
-extends Particles2D
+extends Node2D
 
 export var timer = 1.0
 var destroyNow = 0.0

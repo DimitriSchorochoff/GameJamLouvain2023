@@ -32,4 +32,5 @@ func _on_Area2D_area_entered(area):
 		var bloodEffect = BloodEffect.instance()
 		get_tree().current_scene.add_child(bloodEffect)
 		bloodEffect.global_position = global_position
+		GameManager.NPC_KILL_COUNT += 1
 		self.queue_free()
