@@ -1,16 +1,14 @@
 extends TextureProgress
 
-const BAR_SPEED = 100
-var current_bar_value = 500
 var previous_kill_count = 0
 
 func _process(delta):
-	current_bar_value += (GameManager.NPC_KILL_COUNT - previous_kill_count)*BAR_SPEED
+	GameManager.RAGE += (GameManager.NPC_KILL_COUNT - previous_kill_count)*GameManager.RAGE_PER_KILL
 	previous_kill_count = GameManager.NPC_KILL_COUNT
 	
-	#scurrent_bar_value -= BAR_SPEED * delta
+	#GameManager.RAGE  -= 100 * delta
 	# Don't go below zero
-	current_bar_value = max(current_bar_value, 0)
+	GameManager.RAGE  = max(GameManager.RAGE , 0)
 	
 	# Assuming this is a node you have set up
-	self.value = current_bar_value
+	self.value = GameManager.RAGE 
