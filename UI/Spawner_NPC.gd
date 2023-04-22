@@ -6,12 +6,12 @@ const NPC_2 = preload("res://NPC/NPC_lvl2.tscn")
 var loop_time = 1.0
 var loop_time_incr = 0.01
 
-var spawn_pr_1 = 0.25
-var spawn_pr_inc_1 = 0.005
+var spawn_pr_1 = 0.1
+var spawn_pr_inc_1 = 0.0015
 var N_npc1_spawn = 0
 
-var spawn_pr_2 = 0.1
-var spawn_pr_inc_2 = 0.0075
+var spawn_pr_2 = 0.075
+var spawn_pr_inc_2 = 0.003
 var N_npc2_spawn = 0
 
 var _timer = null
