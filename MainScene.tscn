@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GroundTiles.tres" type="TileSet" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+
+[node name="MainScene" type="Node2D"]
+__meta__ = {
+"_editor_description_": "
+"
+}
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -40 )
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.1, 0.1 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 248, 269 )
+cell_custom_transform = Transform2D( 66, 0, 0, 64, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 720876, 1, 0, 720877, 1, 0, 720878, 1, 0, 720879, 1, 0, 720880, 1, 0, 720881, 1, 0, 720882, 1, 0, 720883, 1, 0, 720884, 1, 0, 720885, 1, 0, 720886, 1, 0, 720887, 1, 0, 720888, 1, 0, 720889, 1, 0, 720890, 1, 0, 720891, 1, 0, 720892, 1, 0, 720893, 1, 0, 720894, 1, 0, 720895, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 655374, 1, 0, 655375, 1, 0, 655376, 1, 0, 655377, 1, 0, 655378, 1, 0, 655379, 1, 0, 655380, 1, 0, 720899, 1, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
