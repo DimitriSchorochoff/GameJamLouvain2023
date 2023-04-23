@@ -100,6 +100,22 @@ tracks/0/keys = {
 "values": [ 6, 7, 8 ]
 }
 
+[sub_resource type="Animation" id=12]
+resource_name = "Land3"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15 ]
+}
+
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
@@ -149,24 +165,8 @@ tracks/0/keys = {
 "values": [ 3, 2 ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "land3"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 13, 14, 15 ]
-}
-
 [sub_resource type="Animation" id=13]
-resource_name = "run3"
+resource_name = "Run3"
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -248,11 +248,11 @@ anims/Idle2 = SubResource( 7 )
 anims/Idle3 = SubResource( 10 )
 anims/Land1 = SubResource( 11 )
 anims/Land2 = SubResource( 8 )
+anims/Land3 = SubResource( 12 )
 anims/RESET = SubResource( 3 )
 anims/Run1 = SubResource( 4 )
 anims/Run2 = SubResource( 9 )
-anims/land3 = SubResource( 12 )
-anims/run3 = SubResource( 13 )
+anims/Run3 = SubResource( 13 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 material = SubResource( 5 )
