@@ -25,6 +25,7 @@ export var laserCD = 5
 var nextLaserNow = 0.0
 
 onready var sprite = $Sprite
+onready var shadow = $Shadow
 onready var animationPlayer = $AnimationPlayer
 onready var flashAnimPlayer = $RedFlash
 onready var particleRun = $Particles2D
@@ -87,10 +88,12 @@ func _physics_process(delta: float) -> void:
 	
 
 	if is_on_floor():
+		shadow.visible = true
 		if landing:
 			land()
 			landing = false
 	else:
+		shadow.visible = false
 		if !landing:
 			landing = true
 

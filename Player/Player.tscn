@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/PlayerKineteic.gd" type="Script" id=1]
 [ext_resource path="res://paciFIST_complete.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://SFX/saut_-_Burst_.mp3" type="AudioStream" id=8]
 [ext_resource path="res://SFX/saut_2.mp3" type="AudioStream" id=9]
 [ext_resource path="res://SFX/saut.mp3" type="AudioStream" id=10]
+[ext_resource path="res://shadow.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.25, 8 )
@@ -307,6 +308,10 @@ volume_db = -3.768
 [node name="Burst3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -3.768
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 0, 1 )
+texture = ExtResource( 11 )
 
 [node name="RedFlash" type="AnimationPlayer" parent="."]
 anims/FlashLaser = SubResource( 16 )
