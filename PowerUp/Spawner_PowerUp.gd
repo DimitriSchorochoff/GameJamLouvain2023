@@ -33,12 +33,9 @@ func onLoop():
 		var pr = randf()
 		if pr < ceil_pr_power1:
 			spawned = POWER1.instance()
-			print("Spawn power 1")
 		elif pr < ceil_pr_power2:
-			print("Spawn power 2")
 			spawned = POWER2.instance()
 		else:
-			print("Spawn power 3")
 			spawned = POWER3.instance()
 			
 		get_parent().add_child(spawned)

@@ -10,15 +10,15 @@ func loadGame():
 	GameManager.GAME_STARTING = true
 	
 func _process(delta: float) -> void:
-	if GameManager.GAME_STARTING:
-		position = position.move_toward(Vector2(0,0), delta * speed)
-		
+	if GameManager.GAME_STARTED:
+		position = Vector2.ZERO
+	elif GameManager.GAME_STARTING:
+		position = position.move_toward(Vector2(0,0), delta * speed)	
+	
 	if position.is_equal_approx(Vector2.ZERO):
 		GameManager.GAME_STARTED = true
 
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-func _on_Button_pressed():
-	print("Hoho")
+	
+func _on_TextureButton_pressed():
 	loadGame()

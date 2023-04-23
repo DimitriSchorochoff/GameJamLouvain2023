@@ -1,11 +1,15 @@
 extends Node
 
+const world_preload = preload("res://World/MainMap.tscn")
+var world_container
+
 var GAME_STARTING = false
 var GAME_STARTED = false
 
 const RAGE_CEIL_1 := 300
 const RAGE_CEIL_2 := 695
-const RAGE_PER_KILL = [50, 25, 12.5]
+const RAGE_MAX = 1000
+const RAGE_PER_KILL = [1000, 25, 12.5]
 
 var NPC_KILL_COUNT := 0
 var RAGE := 0
@@ -60,3 +64,15 @@ func ENABLE_HEARTH_MODE():
 func _disable_hearth_mode():
 	print("HEART MODE OFF")
 	ON_HEARTH_MODE = false
+
+	
+func game_over():
+	print("Game over")
+	get_tree().change_scene("res://UI/RetryScene.tscn")
+	
+func try_again():
+	print("Try again")
+	get_tree().change_scene("res://World/MainMap.tscn")
+	
+	NPC_KILL_COUNT = 0
+	RAGE = 0

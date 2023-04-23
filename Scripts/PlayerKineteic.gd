@@ -48,6 +48,7 @@ func _process(delta):
 	sprite.flip_h = face_h == 1
 
 func _physics_process(delta: float) -> void:
+	if not GameManager.GAME_STARTED: return
 	
 	if (animationIndex != "3"):
 		nextLaserNow = OS.get_ticks_msec()+laserCD;
