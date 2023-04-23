@@ -6,16 +6,19 @@ const NPC_2 = preload("res://NPC/NPC_lvl2.tscn")
 var loop_time = 1.5
 var loop_time_incr = -0.001
 
-var spawn_pr_1 = 0.1
-var spawn_pr_inc_1 = 0.0015
+var spawn_pr_1 = 0.15
+var spawn_pr_inc_1 = 0.005
 var N_npc1_spawn = 0
 
-var spawn_pr_2 = 0.075
-var spawn_pr_inc_2 = 0.003
+var spawn_pr_2 = 0.1
+var spawn_pr_inc_2 = 0.008
 var N_npc2_spawn = 0
 
 var npc_lst = []
 export var N_NPC_CAP = 5
+var BONUS_NPC_CAP = 0
+var inc_NPC_CAP = 1/30
+var MAX_CAP = 5
 
 var _timer = null
 var fully_opened = false
@@ -36,7 +39,7 @@ func onLoop():
 	if not GameManager.GAME_STARTED: return
 	clear_npc_lst()
 	
-	if len(npc_lst) < N_NPC_CAP:
+	if len(npc_lst) < N_NPC_CAP + BONUS_NPC_CAP:
 		if randf() < spawn_pr_1 :
 			N_npc1_spawn+=1
 			
@@ -55,7 +58,7 @@ func onLoop():
 			fully_opened = false
 			anim.play("Close")	
 		
-		if len(npc_lst) < N_NPC_CAP:
+		if len(npc_lst) < N_NPC_CAP + BONUS_NPC_CAP:
 			if randf() < 0.5:
 				if N_npc1_spawn > 0:
 					spawn_npc1()
@@ -67,6 +70,7 @@ func onLoop():
 				elif N_npc1_spawn > 0:
 					spawn_npc1()
 
+	BONUS_NPC_CAP = min(MAX_CAP, BONUS_NPC_CAP+inc_NPC_CAP)
 	loop_time += loop_time_incr
 	spawn_pr_1 += spawn_pr_inc_1
 

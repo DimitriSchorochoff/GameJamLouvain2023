@@ -7,11 +7,11 @@ var loop_time = 1.0
 var loop_time_incr = 0.01
 
 var spawn_pr_1 = 0.25
-var spawn_pr_inc_1 = 0.0001
+var spawn_pr_inc_1 = 0.0003
 var N_npc1_spawn = 0
 
 var spawn_pr_2 = 0.75
-var spawn_pr_inc_2 = 0.0001
+var spawn_pr_inc_2 = 0.0005
 var N_npc2_spawn = 0
 
 var npc_lst = []
