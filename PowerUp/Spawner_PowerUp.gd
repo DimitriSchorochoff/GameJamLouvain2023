@@ -10,8 +10,8 @@ const ceil_pr_power2 = 0.9
 var loop_time = 1.0
 var loop_time_incr = 0.00
 
-var spawn_pr_1 = 0.015
-var spawn_pr_inc_1 = 0.0007
+var spawn_pr_1 = 0.01
+var spawn_pr_inc_1 = 0.0003
 
 var spawned = null
 
