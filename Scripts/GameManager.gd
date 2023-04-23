@@ -9,7 +9,6 @@ const RAGE_PER_KILL = [50, 25, 12.5]
 
 var NPC_KILL_COUNT := 0
 var RAGE := 0
-var NPC_KILL_COUNT := 0
 
 const HEARTH_MODE_DURATION = 7
 const RAGE_PER_KILL_HEARTH = [-12.5, -7.5, -3.75]
