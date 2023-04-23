@@ -3,7 +3,7 @@ extends TextureProgress
 var previous_kill_count = 0
 
 func _process(delta):
-	GameManager.RAGE += (GameManager.NPC_KILL_COUNT - previous_kill_count)*GameManager.RAGE_PER_KILL
+	GameManager.RAGE += (GameManager.NPC_KILL_COUNT - previous_kill_count)*GameManager.GET_RAGE_PER_KILL()
 	previous_kill_count = GameManager.NPC_KILL_COUNT
 	
 	#GameManager.RAGE  -= 100 * delta

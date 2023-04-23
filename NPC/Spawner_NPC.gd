@@ -15,7 +15,7 @@ var spawn_pr_inc_2 = 0.003
 var N_npc2_spawn = 0
 
 var npc_lst = []
-var N_NPC_CAP = 5
+export var N_NPC_CAP = 5
 
 var _timer = null
 var fully_opened = false
@@ -37,11 +37,9 @@ func onLoop():
 	
 	if len(npc_lst) < N_NPC_CAP:
 		if randf() < spawn_pr_1 :
-			print("Spawn 1")
 			N_npc1_spawn+=1
 			
 		if randf() < spawn_pr_2 : 
-			print("Spawn 2")
 			N_npc2_spawn += 1
 
 	var npc2spawn = N_npc1_spawn > 0 || N_npc2_spawn > 0
@@ -56,17 +54,17 @@ func onLoop():
 			fully_opened = false
 			anim.play("Close")	
 		
-	
-		elif randf() < 0.5:
-			if N_npc1_spawn > 0:
-				spawn_npc1()
-			elif N_npc2_spawn > 0:
-				spawn_npc2()
-		else:
-			if N_npc2_spawn > 0:
-				spawn_npc2()
-			elif N_npc1_spawn > 0:
-				spawn_npc1()
+		if len(npc_lst) < N_NPC_CAP:
+			if randf() < 0.5:
+				if N_npc1_spawn > 0:
+					spawn_npc1()
+				elif N_npc2_spawn > 0:
+					spawn_npc2()
+			else:
+				if N_npc2_spawn > 0:
+					spawn_npc2()
+				elif N_npc1_spawn > 0:
+					spawn_npc1()
 
 	loop_time += loop_time_incr
 	spawn_pr_1 += spawn_pr_inc_1
