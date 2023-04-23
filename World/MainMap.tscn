@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://World/ScreenShake.gd" type="Script" id=1]
 [ext_resource path="res://decor2.0.png" type="Texture" id=2]
@@ -8,9 +8,10 @@
 [ext_resource path="res://NPC/Spawner_NPC.tscn" type="PackedScene" id=6]
 [ext_resource path="res://NPC/NPC_collider.tscn" type="PackedScene" id=7]
 [ext_resource path="res://PowerUp/Spawner_PowerUp.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Hyppie.png" type="Texture" id=9]
-[ext_resource path="res://World/HyppieDialogue.gd" type="Script" id=10]
+[ext_resource path="res://World/CameraHandler.gd" type="Script" id=9]
+[ext_resource path="res://UI/StartButton.png" type="Texture" id=10]
 [ext_resource path="res://PixelTheme.tres" type="Theme" id=11]
+[ext_resource path="res://Hyppie.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 320, 10 )
@@ -80,19 +81,6 @@ margin_top = -174.0
 margin_right = -131.0
 margin_bottom = -150.0
 value = 200.0
-
-[node name="Background" type="Sprite" parent="."]
-z_index = -100
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Building" type="Sprite" parent="Background"]
-texture = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Player2" parent="." instance=ExtResource( 4 )]
 position = Vector2( -9, 14 )
@@ -261,6 +249,7 @@ position = Vector2( 0, -101 )
 position = Vector2( -302, 25 )
 
 [node name="CameraScene" type="Camera2D" parent="."]
+position = Vector2( 0, -380 )
 current = true
 script = ExtResource( 1 )
 
@@ -278,7 +267,7 @@ script = ExtResource( 10 )
 [node name="Hyppie" type="Sprite" parent="HyppieDialogue"]
 position = Vector2( -283, -131 )
 scale = Vector2( 1.79032, 1.79032 )
-texture = ExtResource( 9 )
+texture = ExtResource( 12 )
 hframes = 3
 frame = 2
 
@@ -294,3 +283,31 @@ Take a chill pill, Bill."
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HyppieDialogue"]
 anims/RESET = SubResource( 11 )
 anims/Talk = SubResource( 12 )
+
+[node name="Building" type="Sprite" parent="."]
+z_index = -90
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 0, -380 )
+z_index = -100
+texture = ExtResource( 2 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Background"]
+remote_path = NodePath("../../CameraScene")
+
+[node name="Button" type="Button" parent="."]
+margin_left = -96.0
+margin_top = -392.0
+margin_right = 98.0
+margin_bottom = -352.0
+icon = ExtResource( 10 )
+
+[connection signal="pressed" from="Button" to="Background" method="_on_Button_pressed"]
