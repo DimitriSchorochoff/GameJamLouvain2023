@@ -5,7 +5,7 @@ const UP_DIRECTION := Vector2.UP
 export var speed = 220.0
 export var acc = 1500.0
 export var fric = 1500.0
-export var jump_strenght := 600.0
+export var jump_strenght := 1000.0
 export var gravity := 1700.0
 
 
@@ -35,6 +35,7 @@ onready var Burst1SFX = $Burst1 #sons
 onready var Burst2SFX = $Burst2 #sons
 onready var Burst3SFX = $Burst3 #sons
 
+const SmallShockWave = preload("res://player/SmallShockWave.tscn")
 const ShockWave = preload("res://player/ShockWave.tscn")
 const Laser = preload("res://player/laser.tscn")
 
@@ -46,7 +47,6 @@ func _process(delta):
 
 func _physics_process(delta: float) -> void:
 	
-	evolve()
 	
 	if OS.get_ticks_msec() > nextLaserNow and animationIndex == "3":
 		shoot()
@@ -108,7 +108,10 @@ func _physics_process(delta: float) -> void:
 			Burst3SFX.play()
 		JumpSFX.play()
 		_jumps_made += 1
-		_velocity.y -= jump_strenght
+		var strength = jump_strenght
+		if animationIndex == "1":
+			strength *=0.75
+		_velocity.y -= strength
 	
 	if is_jump_cancelled:
 		_velocity.y /= 3
@@ -117,17 +120,6 @@ func _physics_process(delta: float) -> void:
 		_jumps_made = 0
 		
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
-
-func evolve():
-	
-	if (GameManager.NPC_KILL_COUNT > 12):
-		print("you killed all")
-	elif (GameManager.NPC_KILL_COUNT > 8):
-		animationIndex = "3"
-	elif (GameManager.NPC_KILL_COUNT > 3):
-		animationIndex = "2"
-	else:
-		animationIndex = "1"
 
 func shoot():
 	ShootSFX.play()
@@ -144,11 +136,20 @@ func _on_Area2D_area_entered(area):
 		GameManager.SUBSTRACT_RAGE_WITHOUT_CEIL(300)
 		
 func land():
-	LandSFX.play()
-	ScreenShake.shake(6,20)
+
+	
 	animationPlayer.play("Land"+animationIndex)
 	finishLanding = OS.get_ticks_msec()+200
-	var shockWave = ShockWave.instance()
+	
+
+	var shockWave
+	if animationIndex == "1":
+		ScreenShake.shake(1,10)
+		shockWave = SmallShockWave.instance()
+	else:
+		LandSFX.play()
+		ScreenShake.shake(6,20)
+		shockWave = ShockWave.instance()
 	get_parent().add_child(shockWave)
 	shockWave.global_position = global_position
 	
