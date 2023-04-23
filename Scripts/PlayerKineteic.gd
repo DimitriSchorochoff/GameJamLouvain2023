@@ -40,7 +40,7 @@ const ShockWave = preload("res://player/ShockWave.tscn")
 const Laser = preload("res://player/laser.tscn")
 
 onready var GameManager = get_node("/root/GameManager")
-onready var ScreenShake = get_tree().current_scene.get_node("Camera2D")
+onready var ScreenShake = get_tree().current_scene.get_node("CameraScene")
 
 func _process(delta):
 	sprite.flip_h = face_h == 1
@@ -134,6 +134,10 @@ func _on_Area2D_area_entered(area):
 		GameManager.SUBSTRACT_RAGE(100)
 	elif area.is_in_group("PowerUp2"):
 		GameManager.SUBSTRACT_RAGE_WITHOUT_CEIL(300)
+	elif area.is_in_group("PowerUp3"):
+		GameManager.ENABLE_HEARTH_MODE()
+		
+		
 		
 func land():
 

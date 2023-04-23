@@ -2,8 +2,10 @@ extends Node2D
 
 const POWER1 = preload("res://PowerUp/PowerUp1.tscn")
 const POWER2 = preload("res://PowerUp/PowerUp2.tscn")
+const POWER3 = preload("res://PowerUp/PowerUp3.tscn")
 
-const ceil_pr_power1 = 0.8
+const ceil_pr_power1 = 0.1
+const ceil_pr_power2 = 0.2
 
 var loop_time = 1.0
 var loop_time_incr = 0.00
@@ -27,12 +29,15 @@ func _ready():
 func onLoop():
 	if not contain_powerup() && randf() < spawn_pr_1 : 
 		var pr = randf()
-		if randf() < ceil_pr_power1:
+		if pr < ceil_pr_power1:
 			spawned = POWER1.instance()
 			print("Spawn power 1")
-		else:
+		elif pr < ceil_pr_power2:
 			print("Spawn power 2")
 			spawned = POWER2.instance()
+		else:
+			print("Spawn power 3")
+			spawned = POWER3.instance()
 			
 		get_parent().add_child(spawned)
 		spawned.position = position
