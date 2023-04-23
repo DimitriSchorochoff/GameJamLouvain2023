@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scripts/PlayerKineteic.gd" type="Script" id=1]
 [ext_resource path="res://paciFIST_complete.png" type="Texture" id=2]
@@ -8,28 +8,15 @@
 [ext_resource path="res://SFX/Jump.wav" type="AudioStream" id=6]
 [ext_resource path="res://SFX/Land.wav" type="AudioStream" id=7]
 [ext_resource path="res://SFX/saut_-_Burst_.mp3" type="AudioStream" id=8]
-[ext_resource path="res://SFX/saut_2.mp3" type="AudioStream" id=9]
 [ext_resource path="res://SFX/saut.mp3" type="AudioStream" id=10]
 [ext_resource path="res://shadow.png" type="Texture" id=11]
+[ext_resource path="res://Player/whiteflash.gdshader" type="Shader" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.25, 7.5 )
 
-[sub_resource type="Shader" id=14]
-code = "shader_type canvas_item;
-
-uniform vec4 color;
-uniform float flashing = 0;
-
-void fragment(){
-	vec4 previousColor = texture(TEXTURE,UV);
-	vec4 flashColor = vec4(color.r,color.g,color.b,color.a*previousColor.a);
-
-	COLOR =  mix(previousColor, flashColor, flashing);
-}"
-
 [sub_resource type="ShaderMaterial" id=15]
-shader = SubResource( 14 )
+shader = ExtResource( 12 )
 shader_param/color = Plane( 1, 0, 0, 1 )
 shader_param/flashing = 0.0
 
@@ -299,8 +286,9 @@ stream = ExtResource( 6 )
 stream = ExtResource( 7 )
 
 [node name="Burst1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
 volume_db = -3.768
+pitch_scale = 0.83
 
 [node name="Burst2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )

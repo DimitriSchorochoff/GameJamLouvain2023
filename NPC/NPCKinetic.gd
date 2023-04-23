@@ -11,6 +11,10 @@ onready var _velocity = direction*speed
 onready var sprite = $Sprite
 onready var shadow = $Shadow
 
+onready var mort1 = preload("res://SFX/Mort1.tscn")
+onready var mort2 = preload("res://SFX/Mort2.tscn")
+onready var mort3 = preload("res://SFX/Mort3.tscn")
+
 var BloodEffect = preload("res://BloodParticleEffect.tscn")
 
 func _ready():
@@ -46,4 +50,16 @@ func _on_Area2D_area_entered(area):
 		get_tree().current_scene.add_child(bloodEffect)
 		bloodEffect.global_position = global_position
 		GameManager.NPC_KILL_COUNT += 1
+		
+		var sfx
+		var rand = rand_range(0,100)
+		if (rand < 33):
+			sfx = mort1.instance()
+		elif (rand < 66):
+			sfx = mort2.instance()
+		else:
+			sfx = mort3.instance()
+		
+		get_tree().current_scene.add_child(sfx)
+		
 		self.queue_free()

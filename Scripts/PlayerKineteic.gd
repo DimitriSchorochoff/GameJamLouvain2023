@@ -50,7 +50,8 @@ func _process(delta):
 func _physics_process(delta: float) -> void:
 	
 	if (animationIndex != "3"):
-		nextLaserNow = OS.get_ticks_msec()+laserCD;
+		flashAnimPlayer.play("RESET")
+		nextLaserNow = OS.get_ticks_msec()+laserCD
 	
 	if OS.get_ticks_msec() > nextLaserNow and animationIndex == "3":
 		flashAnimPlayer.play("RESET")
