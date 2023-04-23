@@ -26,6 +26,7 @@ var nextLaserNow = 0.0
 
 onready var sprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
+onready var flashAnimPlayer = $RedFlash
 onready var particleRun = $Particles2D
 onready var TititiSFX = $Tititi #sons
 onready var ShootSFX = $Shoot #sons
@@ -47,10 +48,14 @@ func _process(delta):
 
 func _physics_process(delta: float) -> void:
 	
+	if (animationIndex != "3"):
+		nextLaserNow = OS.get_ticks_msec()+laserCD;
 	
 	if OS.get_ticks_msec() > nextLaserNow and animationIndex == "3":
+		flashAnimPlayer.play("RESET")
 		shoot()
 	elif OS.get_ticks_msec() > nextLaserNow-800 and !TititiSFX.playing and animationIndex == "3":
+		flashAnimPlayer.play("FlashLaser")
 		TititiSFX.play()
 
 	if GameManager.RAGE < GameManager.RAGE_CEIL_1:

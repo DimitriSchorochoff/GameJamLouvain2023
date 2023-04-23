@@ -36,6 +36,7 @@ anim_speed = 115.26
 [node name="Particles2D" type="Particles2D"]
 material = SubResource( 1 )
 position = Vector2( 0, -8.324 )
+z_index = -1
 amount = 1
 lifetime = 12.0
 process_material = SubResource( 6 )
