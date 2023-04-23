@@ -10,13 +10,25 @@
 [ext_resource path="res://SFX/saut_-_Burst_.mp3" type="AudioStream" id=8]
 [ext_resource path="res://SFX/saut.mp3" type="AudioStream" id=10]
 [ext_resource path="res://shadow.png" type="Texture" id=11]
-[ext_resource path="res://Player/whiteflash.gdshader" type="Shader" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.25, 8 )
 
+[sub_resource type="Shader" id=14]
+code = "shader_type canvas_item;
+
+uniform vec4 color;
+uniform float flashing = 0;
+
+void fragment(){
+	vec4 previousColor = texture(TEXTURE,UV);
+	vec4 flashColor = vec4(color.r,color.g,color.b,color.a*previousColor.a);
+
+	COLOR =  mix(previousColor, flashColor, flashing);
+}"
+
 [sub_resource type="ShaderMaterial" id=15]
-shader = ExtResource( 12 )
+shader = SubResource( 14 )
 shader_param/color = Plane( 1, 0, 0, 1 )
 shader_param/flashing = 1.0
 
