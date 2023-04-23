@@ -42,7 +42,7 @@ const ShockWave = preload("res://player/ShockWave.tscn")
 const Laser = preload("res://player/laser.tscn")
 
 onready var GameManager = get_node("/root/GameManager")
-onready var ScreenShake = get_tree().current_scene.get_node("CameraScene")
+onready var ScreenShake = get_tree().current_scene.get_node("Background/CameraScene")
 
 func _process(delta):
 	sprite.flip_h = face_h == 1

@@ -13,10 +13,10 @@ func _process(delta: float) -> void:
 	if GameManager.GAME_STARTING:
 		position = position.move_toward(Vector2(0,0), delta * speed)
 		
-	if position.is_equal_approx(Vector2.ZERO) && GameManager.GAME_STARTED != true:
+	if position.is_equal_approx(Vector2.ZERO):
 		GameManager.GAME_STARTED = true
-		remoteTr.queue_free()
 
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 func _on_Button_pressed():
