@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const UP_DIRECTION := Vector2.UP
 
+
 export var speed = 40
 var direction := Vector2(sign(rand_range(-1, 1)), 0)
 export var gravity := 450.0
@@ -11,6 +12,7 @@ onready var _velocity = direction*speed
 onready var sprite = $Sprite
 onready var shadow = $Shadow
 
+onready var hearthDeath = preload("res://SFX/HearthDeath.tscn")
 onready var mort1 = preload("res://SFX/Mort1.tscn")
 onready var mort2 = preload("res://SFX/Mort2.tscn")
 onready var mort3 = preload("res://SFX/Mort3.tscn")
@@ -57,13 +59,16 @@ func _on_Area2D_area_entered(area):
 		GameManager.NPC_KILL_COUNT += 1
 		
 		var sfx
-		var rand = rand_range(0,100)
-		if (rand < 33):
-			sfx = mort1.instance()
-		elif (rand < 66):
-			sfx = mort2.instance()
+		if GameManager.ON_HEARTH_MODE:
+			sfx = hearthDeath.instance()
 		else:
-			sfx = mort3.instance()
+			var rand = rand_range(0,100)
+			if (rand < 33):
+				sfx = mort1.instance()
+			elif (rand < 66):
+				sfx = mort2.instance()
+			else:
+				sfx = mort3.instance()
 		
 		get_tree().current_scene.add_child(sfx)
 		

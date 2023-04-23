@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://World/ScreenShake.gd" type="Script" id=1]
 [ext_resource path="res://World/background.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://NPC/NPC_collider.tscn" type="PackedScene" id=7]
 [ext_resource path="res://PowerUp/Spawner_PowerUp.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/CameraHandler.gd" type="Script" id=9]
+[ext_resource path="res://TitleFist.png" type="Texture" id=10]
 [ext_resource path="res://World/Start2.png" type="Texture" id=13]
 [ext_resource path="res://World/Start1.png" type="Texture" id=14]
 [ext_resource path="res://SFX/Techto.wav" type="AudioStream" id=15]
@@ -42,7 +43,7 @@ extents = Vector2( 67.5, 2 )
 extents = Vector2( 49, 2 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 10, 221 )
+extents = Vector2( 10, 518 )
 
 [node name="MainMap" type="Node2D"]
 
@@ -56,6 +57,10 @@ margin_bottom = -136.0
 position = Vector2( -9, 14 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player2"]
+
+[node name="TitleFist" type="Sprite" parent="Player2/RemoteTransform2D"]
+position = Vector2( 9, -502 )
+texture = ExtResource( 10 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
@@ -167,8 +172,8 @@ position = Vector2( -117, 84 )
 [node name="NPC_Spawner" type="Node2D" parent="."]
 
 [node name="Spawner_NPC" parent="NPC_Spawner" instance=ExtResource( 6 )]
-position = Vector2( -295, 64 )
-N_NPC_CAP = 3
+position = Vector2( -294, 64 )
+N_NPC_CAP = 2.0
 
 [node name="Spawner_NPC2" parent="NPC_Spawner" instance=ExtResource( 6 )]
 position = Vector2( -80, 69 )
@@ -178,45 +183,56 @@ position = Vector2( -165, 4 )
 
 [node name="Spawner_NPC4" parent="NPC_Spawner" instance=ExtResource( 6 )]
 position = Vector2( 28, -29 )
-N_NPC_CAP = 3
+N_NPC_CAP = 2.0
 
 [node name="Spawner_NPC5" parent="NPC_Spawner" instance=ExtResource( 6 )]
-position = Vector2( 101, -109 )
+position = Vector2( 96, -109 )
 
 [node name="Spawner_NPC6" parent="NPC_Spawner" instance=ExtResource( 6 )]
-position = Vector2( -18, 148 )
+position = Vector2( -96, 148 )
+N_NPC_CAP = 6.0
 
 [node name="Spawner_NPC10" parent="NPC_Spawner" instance=ExtResource( 6 )]
-position = Vector2( -186, 148 )
+position = Vector2( 156, 148 )
+N_NPC_CAP = 6.0
 
 [node name="Spawner_NPC7" parent="NPC_Spawner" instance=ExtResource( 6 )]
-position = Vector2( 239, 95 )
-N_NPC_CAP = 2
+position = Vector2( 240, 98 )
+N_NPC_CAP = 2.0
 
 [node name="Spawner_NPC9" parent="NPC_Spawner" instance=ExtResource( 6 )]
 position = Vector2( 203, -74 )
-N_NPC_CAP = 3
+N_NPC_CAP = 4.0
 
 [node name="Spawner_NPC8" parent="NPC_Spawner" instance=ExtResource( 6 )]
 position = Vector2( 188, 49 )
-N_NPC_CAP = 2
+N_NPC_CAP = 2.0
 
 [node name="PowerUpSpawner" type="Node2D" parent="."]
 
-[node name="Spawner_NPC" parent="PowerUpSpawner" instance=ExtResource( 8 )]
+[node name="Spawner_power" parent="PowerUpSpawner" instance=ExtResource( 8 )]
 position = Vector2( -105, -28 )
 
-[node name="Spawner_NPC2" parent="PowerUpSpawner" instance=ExtResource( 8 )]
-position = Vector2( -242, 85 )
+[node name="Spawner_power2" parent="PowerUpSpawner" instance=ExtResource( 8 )]
+position = Vector2( -170, 80 )
 
-[node name="Spawner_NPC3" parent="PowerUpSpawner" instance=ExtResource( 8 )]
-position = Vector2( 142, 22 )
+[node name="Spawner_power3" parent="PowerUpSpawner" instance=ExtResource( 8 )]
+position = Vector2( 120, 16 )
 
-[node name="Spawner_NPC4" parent="PowerUpSpawner" instance=ExtResource( 8 )]
-position = Vector2( 0, -101 )
+[node name="Spawner_power4" parent="PowerUpSpawner" instance=ExtResource( 8 )]
+position = Vector2( -9, -136 )
 
-[node name="Spawner_NPC5" parent="PowerUpSpawner" instance=ExtResource( 8 )]
-position = Vector2( -302, 25 )
+[node name="Spawner_power5" parent="PowerUpSpawner" instance=ExtResource( 8 )]
+position = Vector2( -302, 14 )
+
+[node name="Spawner_power6" parent="PowerUpSpawner" instance=ExtResource( 8 )]
+position = Vector2( 248, 40 )
+
+[node name="Spawner_power7" parent="PowerUpSpawner" instance=ExtResource( 8 )]
+position = Vector2( 256, -125 )
+
+[node name="Spawner_power8" parent="PowerUpSpawner" instance=ExtResource( 8 )]
+position = Vector2( 16, 32 )
 
 [node name="Building" type="Sprite" parent="."]
 z_index = -90

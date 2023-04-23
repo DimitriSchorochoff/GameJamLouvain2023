@@ -14,7 +14,8 @@ func _process(delta: float) -> void:
 	elif GameManager.GAME_STARTING:
 		position = position.move_toward(Vector2(0,0), delta * speed)	
 	
-	if position.is_equal_approx(Vector2.ZERO):
+	if not GameManager.GAME_STARTED and position.is_equal_approx(Vector2.ZERO):
+		GameManager.TIME = 0.0
 		GameManager.GAME_STARTED = true
 
 	

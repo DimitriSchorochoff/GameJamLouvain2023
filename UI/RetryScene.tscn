@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/backgroundTryAgain.png" type="Texture" id=1]
 [ext_resource path="res://UI/Retry2.png" type="Texture" id=2]
 [ext_resource path="res://UI/RetryScript.gd" type="Script" id=3]
 [ext_resource path="res://UI/Retry1.png" type="Texture" id=4]
+[ext_resource path="res://NumberFont.tres" type="DynamicFont" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Anim"
@@ -57,5 +58,22 @@ texture_pressed = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -64.0
+margin_right = 152.0
+margin_bottom = -8.0
+rect_pivot_offset = Vector2( 125, 44 )
+custom_colors/default_color = Color( 1, 0.223529, 0.364706, 1 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "[center]42"
+text = "42"
+scroll_active = false
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

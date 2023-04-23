@@ -3,22 +3,22 @@ extends Node2D
 const NPC_1 = preload("res://NPC/NPC.tscn")
 const NPC_2 = preload("res://NPC/NPC_lvl2.tscn")
 
-var loop_time = 1.5
-var loop_time_incr = -0.001
+var loop_time = 1
+var loop_time_incr = -0.0025
 
-var spawn_pr_1 = 0.15
-var spawn_pr_inc_1 = 0.005
+var spawn_pr_1 = 0.2
+var spawn_pr_inc_1 = 0.01
 var N_npc1_spawn = 0
 
-var spawn_pr_2 = 0.1
-var spawn_pr_inc_2 = 0.008
+var spawn_pr_2 = 0.07
+var spawn_pr_inc_2 = 0.015
 var N_npc2_spawn = 0
 
 var npc_lst = []
-export var N_NPC_CAP = 5
-var BONUS_NPC_CAP = 0
-var inc_NPC_CAP = 1/30
-var MAX_CAP = 5
+export var N_NPC_CAP = 5.0
+var BONUS_NPC_CAP = 0.0
+var inc_NPC_CAP = 0.02
+var MAX_CAP = 7.0
 
 var _timer = null
 var fully_opened = false
@@ -49,16 +49,16 @@ func onLoop():
 	var npc2spawn = N_npc1_spawn > 0 || N_npc2_spawn > 0
 
 		
-	if fully_closed and npc2spawn:
+	if fully_closed and can_spawn_npc():
 		fully_closed = false
 		anim.play("Open")
 		
 	if fully_opened:
-		if not npc2spawn:
+		if not can_spawn_npc():
 			fully_opened = false
 			anim.play("Close")	
 		
-		if len(npc_lst) < N_NPC_CAP + BONUS_NPC_CAP:
+		else:
 			if randf() < 0.5:
 				if N_npc1_spawn > 0:
 					spawn_npc1()
@@ -70,10 +70,15 @@ func onLoop():
 				elif N_npc1_spawn > 0:
 					spawn_npc1()
 
-	BONUS_NPC_CAP = min(MAX_CAP, BONUS_NPC_CAP+inc_NPC_CAP)
+	#BONUS_NPC_CAP = min(MAX_CAP, BONUS_NPC_CAP+inc_NPC_CAP)
+	BONUS_NPC_CAP += inc_NPC_CAP
+	print(BONUS_NPC_CAP)
 	loop_time += loop_time_incr
 	spawn_pr_1 += spawn_pr_inc_1
 
+
+func can_spawn_npc()->bool:
+	return (N_npc1_spawn > 0 or N_npc2_spawn > 0) and len(npc_lst) < N_NPC_CAP + BONUS_NPC_CAP
 
 func spawn_npc1():
 	var num = int(floor(rand_range(1, 5.99999)))
@@ -81,6 +86,7 @@ func spawn_npc1():
 		var npc1 = NPC_1.instance()
 		get_parent().add_child(npc1)
 		npc1.get_node("AnimationPlayer").play("NPC"+String(num))
+		npc1.speed = GameManager.NPC_SPEED[num-1]
 		npc1.position = position
 		N_npc1_spawn -= 1 
 		npc_lst.append(npc1)
@@ -90,6 +96,7 @@ func spawn_npc2():
 	get_parent().add_child(npc2)
 	#var num = int(floor(rand_range(1, 5.99999)))
 	npc2.get_node("AnimationPlayer").play("NPC3")
+	npc2.speed = GameManager.NPC_SPEED[2]
 	npc2.position = position
 	N_npc2_spawn -= 1 
 	npc_lst.append(npc2)

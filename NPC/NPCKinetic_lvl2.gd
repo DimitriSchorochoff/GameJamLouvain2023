@@ -11,6 +11,7 @@ export var face_h := 1.0
 onready var _velocity = direction*speed
 onready var sprite = $Sprite
 
+onready var hearthDeath = preload("res://SFX/HearthDeath.tscn")
 onready var mort = preload("res://SFX/MortRobot1.tscn")
 
 var BloodEffect = preload("res://BloodParticleEffect.tscn")
@@ -52,8 +53,11 @@ func _on_Area2D_area_entered(area):
 		bloodEffect.global_position = global_position
 		GameManager.NPC_KILL_COUNT += 1
 		
-		
-		var sfx = mort.instance()
+		var sfx
+		if GameManager.ON_HEARTH_MODE:
+			sfx = hearthDeath.instance()
+		else:
+			sfx = mort.instance()
 		
 		get_tree().current_scene.add_child(sfx)
 		self.queue_free()

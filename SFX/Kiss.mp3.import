@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Kiss.mp3-bd86e583992fd0ee0c17e0b5204dc7eb.mp3str"
+
+[deps]
+
+source_file="res://SFX/Kiss.mp3"
+dest_files=[ "res://.import/Kiss.mp3-bd86e583992fd0ee0c17e0b5204dc7eb.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

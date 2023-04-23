@@ -143,9 +143,9 @@ func shoot():
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("PowerUp1"):
-		GameManager.SUBSTRACT_RAGE(100)
+		GameManager.SUBSTRACT_RAGE(125)
 	elif area.is_in_group("PowerUp2"):
-		GameManager.SUBSTRACT_RAGE_WITHOUT_CEIL(300)
+		GameManager.SUBSTRACT_RAGE_WITHOUT_CEIL(250)
 	elif area.is_in_group("PowerUp3"):
 		GameManager.ENABLE_HEARTH_MODE()
 		
