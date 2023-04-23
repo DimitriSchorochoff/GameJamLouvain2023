@@ -143,7 +143,7 @@ func shoot():
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("PowerUp1"):
-		GameManager.SUBSTRACT_RAGE(125)
+		GameManager.SUBSTRACT_RAGE(150)
 	elif area.is_in_group("PowerUp2"):
 		GameManager.SUBSTRACT_RAGE_WITHOUT_CEIL(250)
 	elif area.is_in_group("PowerUp3"):

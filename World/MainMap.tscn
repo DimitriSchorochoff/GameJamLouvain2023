@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://World/ScreenShake.gd" type="Script" id=1]
 [ext_resource path="res://World/background.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://PowerUp/Spawner_PowerUp.tscn" type="PackedScene" id=8]
 [ext_resource path="res://World/CameraHandler.gd" type="Script" id=9]
 [ext_resource path="res://TitleFist.png" type="Texture" id=10]
+[ext_resource path="res://World/Hyppie.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/Start2.png" type="Texture" id=13]
 [ext_resource path="res://World/Start1.png" type="Texture" id=14]
 [ext_resource path="res://SFX/Techto.wav" type="AudioStream" id=15]
@@ -262,6 +263,9 @@ margin_bottom = -229.0
 texture_normal = ExtResource( 14 )
 texture_pressed = ExtResource( 13 )
 script = ExtResource( 17 )
+
+[node name="Node2D" parent="." instance=ExtResource( 11 )]
+position = Vector2( -272, -115 )
 
 [connection signal="pressed" from="TextureButton" to="Background" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_TextureButton_pressed"]

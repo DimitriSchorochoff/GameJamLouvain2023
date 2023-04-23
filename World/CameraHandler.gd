@@ -9,6 +9,8 @@ func loadGame():
 	GameManager.GAME_STARTING = true
 	
 func _process(delta: float) -> void:
+	if Input.is_action_just_released("jump"):
+		loadGame()
 	if GameManager.GAME_STARTED:
 		position = Vector2.ZERO
 	elif GameManager.GAME_STARTING:

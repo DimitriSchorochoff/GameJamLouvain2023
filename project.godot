@@ -40,7 +40,8 @@ _global_script_class_icons={
 
 config/name="GamJamUclouvain2023"
 run/main_scene="res://World/MainMap.tscn"
-config/icon="res://icon.png"
+config/icon="res://TitleFist.png"
+config/windows_native_icon="res://TitleFist.ico"
 
 [autoload]
 

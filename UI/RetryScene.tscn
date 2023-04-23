@@ -4,7 +4,7 @@
 [ext_resource path="res://UI/Retry2.png" type="Texture" id=2]
 [ext_resource path="res://UI/RetryScript.gd" type="Script" id=3]
 [ext_resource path="res://UI/Retry1.png" type="Texture" id=4]
-[ext_resource path="res://NumberFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Minecraft.tres" type="DynamicFont" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Anim"

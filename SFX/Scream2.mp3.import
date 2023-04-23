@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Scream2.mp3-55f1e81a4b675b686d46d5d8941466e5.mp3str"
+
+[deps]
+
+source_file="res://SFX/Scream2.mp3"
+dest_files=[ "res://.import/Scream2.mp3-55f1e81a4b675b686d46d5d8941466e5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

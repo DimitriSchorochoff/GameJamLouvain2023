@@ -12,6 +12,13 @@ export var sentences = ["Meeec relax \non est cool", "Prend une cigarette pour \
 var index = 0
 
 func _process(delta):
+	if GameManager.GAME_STARTED: 
+		self.visible = true
+		text.visible = true
+	else: 
+		self.visible = false
+		text.visible = false
+	
 	if (OS.get_ticks_msec() > talkNow and !talking):
 		talking = true
 		talk()
