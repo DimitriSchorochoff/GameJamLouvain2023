@@ -15,3 +15,6 @@ func _process(delta):
 	
 	# Assuming this is a node you have set up
 	self.value = GameManager.RAGE 
+	
+	if GameManager.RAGE >= GameManager.RAGE_MAX:
+		GameManager.game_over()
