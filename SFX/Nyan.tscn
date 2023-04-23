@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://SFX/bonus_chat_Nyan_cat_7_sec_fade_out.mp3" type="AudioStream" id=1]
+
+[node name="Nyan" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -8.624
+autoplay = true

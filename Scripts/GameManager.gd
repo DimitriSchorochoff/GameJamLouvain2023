@@ -3,6 +3,8 @@ extends Node
 var GAME_STARTING = false
 var GAME_STARTED = false
 
+onready var Nyansfx = preload("res://SFX/Nyan.tscn")
+
 const RAGE_CEIL_1 := 300
 const RAGE_CEIL_2 := 695
 const RAGE_PER_KILL = [50, 25, 12.5]
@@ -45,6 +47,7 @@ func GET_RAGE_PER_KILL()->int:
 		return RAGE_PER_KILL[burst-1]
 
 func ENABLE_HEARTH_MODE():
+	get_tree().current_scene.add_child(Nyansfx.instance())
 	ON_HEARTH_MODE = true
 	print("HEART MODE ON")
 	if hearth_timer != null:

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bonus_chat_Nyan_cat_7_sec_fade_out.mp3-c6fd8357ffed02f426eff0b23a31d674.mp3str"
+
+[deps]
+
+source_file="res://SFX/bonus_chat_Nyan_cat_7_sec_fade_out.mp3"
+dest_files=[ "res://.import/bonus_chat_Nyan_cat_7_sec_fade_out.mp3-c6fd8357ffed02f426eff0b23a31d674.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

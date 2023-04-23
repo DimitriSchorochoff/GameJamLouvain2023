@@ -37,6 +37,7 @@ onready var Burst1SFX = $Burst1 #sons
 onready var Burst2SFX = $Burst2 #sons
 onready var Burst3SFX = $Burst3 #sons
 
+
 const SmallShockWave = preload("res://player/SmallShockWave.tscn")
 const ShockWave = preload("res://player/ShockWave.tscn")
 const Laser = preload("res://player/laser.tscn")
@@ -51,6 +52,7 @@ func _physics_process(delta: float) -> void:
 	
 	if (animationIndex != "3"):
 		flashAnimPlayer.play("RESET")
+		nextLaserNow = OS.get_ticks_msec()+laserCD
 		nextLaserNow = OS.get_ticks_msec()+laserCD
 	
 	if OS.get_ticks_msec() > nextLaserNow and animationIndex == "3":
