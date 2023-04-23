@@ -5,7 +5,7 @@ onready var portrait = $AnimationPlayer
 
 export var talkCD = 2
 export var talktime = 5
-onready var talkNow = talkCD
+onready var talkNow = 20
 var talking = false
 
 export var sentences = ["Meeec relax \non est cool", "Prend une cigarette pour \nte calmer, man","Ou encore mieux, \nun GROS PILON SA MERE","Wooooow","Je ferai bien un \npetit hawai du zanzi' perso","Un burger hawai vege","Avec des frites","Et un gros \nPILON SA MERE aussi"]
