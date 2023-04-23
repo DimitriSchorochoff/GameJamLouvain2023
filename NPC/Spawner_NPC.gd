@@ -34,7 +34,6 @@ func _ready():
 	
 func onLoop():
 	if not GameManager.GAME_STARTED: return
-	
 	clear_npc_lst()
 	
 	if len(npc_lst) < N_NPC_CAP:
@@ -96,8 +95,7 @@ func clear_npc_lst():
 	var toKeep = []
 	for i in npc_lst:
 		if is_instance_valid(i):
-			toKeep.append(i)
-			
+			toKeep.append(i)		
 	npc_lst = toKeep
 
 func _on_AnimationPlayer_animation_finished(anim_name):

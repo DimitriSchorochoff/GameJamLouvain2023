@@ -1,11 +1,36 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scripts/PlayerKineteic.gd" type="Script" id=1]
 [ext_resource path="res://paciFIST_complete.png" type="Texture" id=2]
 [ext_resource path="res://particle_dust01.png" type="Texture" id=3]
+[ext_resource path="res://SFX/Tititi.wav" type="AudioStream" id=4]
+[ext_resource path="res://SFX/Shoot.wav" type="AudioStream" id=5]
+[ext_resource path="res://SFX/Jump.wav" type="AudioStream" id=6]
+[ext_resource path="res://SFX/Land.wav" type="AudioStream" id=7]
+[ext_resource path="res://SFX/saut_-_Burst_.mp3" type="AudioStream" id=8]
+[ext_resource path="res://SFX/saut_2.mp3" type="AudioStream" id=9]
+[ext_resource path="res://SFX/saut.mp3" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.25, 8 )
+
+[sub_resource type="Shader" id=14]
+code = "shader_type canvas_item;
+
+uniform vec4 color;
+uniform float flashing = 0;
+
+void fragment(){
+	vec4 previousColor = texture(TEXTURE,UV);
+	vec4 flashColor = vec4(color.r,color.g,color.b,color.a*previousColor.a);
+
+	COLOR =  mix(previousColor, flashColor, flashing);
+}"
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = SubResource( 14 )
+shader_param/color = Plane( 1, 0, 0, 1 )
+shader_param/flashing = 0.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -182,6 +207,38 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 anim_speed = 1.63
 
+[sub_resource type="Animation" id=16]
+resource_name = "FlashLaser"
+length = 0.334
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/flashing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.172507 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/flashing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
 [node name="Player2" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
@@ -190,6 +247,7 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 15 )
 position = Vector2( 0, -8 )
 z_index = 2
 texture = ExtResource( 2 )
@@ -224,5 +282,34 @@ collision_mask = 9
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Tititi" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -5.0
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Land" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="Burst1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -3.768
+
+[node name="Burst2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -3.768
+
+[node name="Burst3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -3.768
+
+[node name="RedFlash" type="AnimationPlayer" parent="."]
+anims/FlashLaser = SubResource( 16 )
+anims/RESET = SubResource( 17 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

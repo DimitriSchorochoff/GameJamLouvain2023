@@ -5,7 +5,7 @@ const UP_DIRECTION := Vector2.UP
 export var speed = 220.0
 export var acc = 1500.0
 export var fric = 1500.0
-export var jump_strenght := 600.0
+export var jump_strenght := 1000.0
 export var gravity := 1700.0
 
 
@@ -19,21 +19,45 @@ var landing = false
 var finishLanding = 0.0
 
 
-var animationIndex = "2"
+var animationIndex = "1"
+
+export var laserCD = 5
+var nextLaserNow = 0.0
 
 onready var sprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
+onready var flashAnimPlayer = $RedFlash
 onready var particleRun = $Particles2D
+onready var TititiSFX = $Tititi #sons
+onready var ShootSFX = $Shoot #sons
+onready var JumpSFX = $Jump #sons
+onready var LandSFX = $Land #sons
+onready var Burst1SFX = $Burst1 #sons
+onready var Burst2SFX = $Burst2 #sons
+onready var Burst3SFX = $Burst3 #sons
 
+const SmallShockWave = preload("res://player/SmallShockWave.tscn")
 const ShockWave = preload("res://player/ShockWave.tscn")
+const Laser = preload("res://player/laser.tscn")
 
 onready var GameManager = get_node("/root/GameManager")
+onready var ScreenShake = get_tree().current_scene.get_node("CameraScene")
 
 func _process(delta):
 	sprite.flip_h = face_h == 1
 
 func _physics_process(delta: float) -> void:
 	
+	if (animationIndex != "3"):
+		nextLaserNow = OS.get_ticks_msec()+laserCD;
+	
+	if OS.get_ticks_msec() > nextLaserNow and animationIndex == "3":
+		flashAnimPlayer.play("RESET")
+		shoot()
+	elif OS.get_ticks_msec() > nextLaserNow-800 and !TititiSFX.playing and animationIndex == "3":
+		flashAnimPlayer.play("FlashLaser")
+		TititiSFX.play()
+
 	if GameManager.RAGE < GameManager.RAGE_CEIL_1:
 		 animationIndex = "1"
 	elif GameManager.RAGE < GameManager.RAGE_CEIL_2:
@@ -80,8 +104,19 @@ func _physics_process(delta: float) -> void:
 		
 
 	if is_jumping:
+		var rand = rand_range(1,100)
+		if (rand<45):
+			Burst1SFX.play()
+		elif (rand<90):
+			Burst2SFX.play()
+		else:
+			Burst3SFX.play()
+		JumpSFX.play()
 		_jumps_made += 1
-		_velocity.y -= jump_strenght
+		var strength = jump_strenght
+		if animationIndex == "1":
+			strength *=0.75
+		_velocity.y -= strength
 	
 	if is_jump_cancelled:
 		_velocity.y /= 3
@@ -91,17 +126,39 @@ func _physics_process(delta: float) -> void:
 		
 	_velocity = move_and_slide(_velocity, UP_DIRECTION)
 
+func shoot():
+	ShootSFX.play()
+	var laser = Laser.instance()
+	get_parent().add_child(laser)
+	laser.global_position = global_position
+	laser.dir = face_h
+	nextLaserNow = OS.get_ticks_msec() + laserCD*1000 #millisecond
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("PowerUp1"):
 		GameManager.SUBSTRACT_RAGE(100)
 	elif area.is_in_group("PowerUp2"):
 		GameManager.SUBSTRACT_RAGE_WITHOUT_CEIL(300)
+	elif area.is_in_group("PowerUp3"):
+		GameManager.ENABLE_HEARTH_MODE()
+		
+		
 		
 func land():
+
+	
 	animationPlayer.play("Land"+animationIndex)
 	finishLanding = OS.get_ticks_msec()+200
-	var shockWave = ShockWave.instance()
+	
+
+	var shockWave
+	if animationIndex == "1":
+		ScreenShake.shake(1,10)
+		shockWave = SmallShockWave.instance()
+	else:
+		LandSFX.play()
+		ScreenShake.shake(6,20)
+		shockWave = ShockWave.instance()
 	get_parent().add_child(shockWave)
 	shockWave.global_position = global_position
 	

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/saut_-_Burst_.mp3-959dd9ed1ea05aa0f0c4906ad999a7fc.mp3str"
+
+[deps]
+
+source_file="res://SFX/saut_-_Burst_.mp3"
+dest_files=[ "res://.import/saut_-_Burst_.mp3-959dd9ed1ea05aa0f0c4906ad999a7fc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

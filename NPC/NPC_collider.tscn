@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 29 )
+
+[node name="NPC_collider" type="StaticBody2D"]
+light_mask = 0
+position = Vector2( -327, 168 )
+collision_layer = 8
+collision_mask = 5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -19 )
+shape = SubResource( 2 )
