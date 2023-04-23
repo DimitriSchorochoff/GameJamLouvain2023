@@ -4,14 +4,14 @@ const POWER1 = preload("res://PowerUp/PowerUp1.tscn")
 const POWER2 = preload("res://PowerUp/PowerUp2.tscn")
 const POWER3 = preload("res://PowerUp/PowerUp3.tscn")
 
-const ceil_pr_power1 = 0.1
-const ceil_pr_power2 = 0.2
+const ceil_pr_power1 = 0.7
+const ceil_pr_power2 = 0.9
 
 var loop_time = 1.0
 var loop_time_incr = 0.00
 
-var spawn_pr_1 = 0.05
-var spawn_pr_inc_1 = 0.00001
+var spawn_pr_1 = 0.015
+var spawn_pr_inc_1 = 0.0007
 
 var spawned = null
 

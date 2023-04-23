@@ -11,7 +11,7 @@ onready var Nyansfx = preload("res://SFX/Nyan.tscn")
 const RAGE_CEIL_1 := 300
 const RAGE_CEIL_2 := 695
 const RAGE_MAX = 1000
-const RAGE_PER_KILL = [1000, 25, 12.5]
+const RAGE_PER_KILL = [50, 35, 25]
 
 var NPC_KILL_COUNT := 0
 var RAGE := 0
