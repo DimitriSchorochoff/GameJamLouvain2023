@@ -25,6 +25,8 @@ func _ready():
 	_timer.start()
 	
 func onLoop():
+	if not GameManager.GAME_STARTED: return
+	
 	if not contain_powerup() && randf() < spawn_pr_1 : 
 		var pr = randf()
 		if randf() < ceil_pr_power1:

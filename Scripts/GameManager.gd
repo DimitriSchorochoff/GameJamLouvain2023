@@ -1,9 +1,12 @@
 extends Node
 
-const RAGE_CEIL_1 := 200
-const RAGE_CEIL_2 := 555
+var GAME_STARTING = false
+var GAME_STARTED = false
 
-var RAGE_PER_KILL := 50
+const RAGE_CEIL_1 := 300
+const RAGE_CEIL_2 := 695
+const RAGE_PER_KILL = [50, 25, 12.5]
+
 var NPC_KILL_COUNT := 0
 var RAGE := 0
 

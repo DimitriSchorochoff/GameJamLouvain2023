@@ -3,19 +3,19 @@ extends Node2D
 const NPC_1 = preload("res://NPC/NPC.tscn")
 const NPC_2 = preload("res://NPC/NPC_lvl2.tscn")
 
-var loop_time = 1.0
-var loop_time_incr = 0.01
+var loop_time = 1.5
+var loop_time_incr = -0.001
 
-var spawn_pr_1 = 0.25
-var spawn_pr_inc_1 = 0.0001
+var spawn_pr_1 = 0.1
+var spawn_pr_inc_1 = 0.0015
 var N_npc1_spawn = 0
 
-var spawn_pr_2 = 0.75
-var spawn_pr_inc_2 = 0.0001
+var spawn_pr_2 = 0.075
+var spawn_pr_inc_2 = 0.003
 var N_npc2_spawn = 0
 
 var npc_lst = []
-var N_NPC_CAP = 5
+export var N_NPC_CAP = 5
 
 var _timer = null
 var fully_opened = false
@@ -45,10 +45,8 @@ func onLoop():
 			N_npc2_spawn += 1
 
 	var npc2spawn = N_npc1_spawn > 0 || N_npc2_spawn > 0
-		
-	if randf() < spawn_pr_2 : 
-		N_npc2_spawn += 1
 
+		
 	if fully_closed and npc2spawn:
 		fully_closed = false
 		anim.play("Open")
@@ -58,35 +56,27 @@ func onLoop():
 			fully_opened = false
 			anim.play("Close")	
 		
-	
-		elif randf() < 0.5:
-			if N_npc1_spawn > 0:
-				spawn_npc1()
-			elif N_npc2_spawn > 0:
-				spawn_npc2()
-		else:
-			if N_npc2_spawn > 0:
-				spawn_npc2()
-			elif N_npc1_spawn > 0:
-				spawn_npc1()
+		if len(npc_lst) < N_NPC_CAP:
+			if randf() < 0.5:
+				if N_npc1_spawn > 0:
+					spawn_npc1()
+				elif N_npc2_spawn > 0:
+					spawn_npc2()
+			else:
+				if N_npc2_spawn > 0:
+					spawn_npc2()
+				elif N_npc1_spawn > 0:
+					spawn_npc1()
 
 	loop_time += loop_time_incr
 	spawn_pr_1 += spawn_pr_inc_1
 
 
-func clear_npc_lst():
-	var toKeep = []
-	for i in npc_lst:
-		if is_instance_valid(i):
-			toKeep.append(i)
-			
-	npc_lst = toKeep
-
 func spawn_npc1():
-	var npc1 = NPC_1.instance()
-	get_parent().add_child(npc1)
 	var num = int(floor(rand_range(1, 5.99999)))
 	if num != 3:
+		var npc1 = NPC_1.instance()
+		get_parent().add_child(npc1)
 		npc1.get_node("AnimationPlayer").play("NPC"+String(num))
 		npc1.position = position
 		N_npc1_spawn -= 1 
@@ -100,6 +90,15 @@ func spawn_npc2():
 	npc2.position = position
 	N_npc2_spawn -= 1 
 	npc_lst.append(npc2)
+
+func clear_npc_lst():
+	
+	var toKeep = []
+	for i in npc_lst:
+		if is_instance_valid(i):
+			toKeep.append(i)
+			
+	npc_lst = toKeep
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Open":
