@@ -9,6 +9,7 @@ export var face_h := 1.0
 
 onready var _velocity = direction*speed
 onready var sprite = $Sprite
+onready var shadow = $Shadow
 
 var BloodEffect = preload("res://BloodParticleEffect.tscn")
 
@@ -32,6 +33,7 @@ func _physics_process(delta: float) -> void:
 	var is_idling = is_zero_approx(_velocity.x) and is_on_floor()
 	var is_running = is_on_floor() and not is_zero_approx(_velocity.x)
 	
+	shadow.visible = is_on_floor()
 		
 	if is_on_wall():
 		direction.x *= -1
