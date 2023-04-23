@@ -1,12 +1,16 @@
 extends Node
 
-const RAGE_CEIL_1 := 200
-const RAGE_CEIL_2 := 555
+var GAME_STARTING = false
+var GAME_STARTED = false
+
+const RAGE_CEIL_1 := 300
+const RAGE_CEIL_2 := 695
 const RAGE_PER_KILL = [50, 25, 12.5]
 
-var RAGE := 0
 var NPC_KILL_COUNT := 0
+var RAGE := 0
 
+var hearth_timer
 const HEARTH_MODE_DURATION = 7
 const RAGE_PER_KILL_HEARTH = [-12.5, -7.5, -3.75]
 var ON_HEARTH_MODE = false
@@ -42,14 +46,17 @@ func GET_RAGE_PER_KILL()->int:
 
 func ENABLE_HEARTH_MODE():
 	ON_HEARTH_MODE = true
+	print("HEART MODE ON")
+	if hearth_timer != null:
+		hearth_timer.disconnect("timeout",self,"_disable_hearth_mode")
 	
-	var timer = Timer.new()
-	timer.connect("timeout",self,"_disable_hearth_mode") 
-	timer.set_wait_time( HEARTH_MODE_DURATION )
-	add_child(timer) #to process
-	timer.start() #to start
+	hearth_timer = Timer.new()
+	hearth_timer.connect("timeout",self,"_disable_hearth_mode") 
+	hearth_timer.set_wait_time( HEARTH_MODE_DURATION )
+	add_child(hearth_timer) #to process
+	hearth_timer.start() #to start
 	
 	
 func _disable_hearth_mode():
-	print("DISABLED")
+	print("HEART MODE OFF")
 	ON_HEARTH_MODE = false
