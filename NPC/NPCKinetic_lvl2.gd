@@ -12,6 +12,7 @@ onready var _velocity = direction*speed
 onready var sprite = $Sprite
 
 var BloodEffect = preload("res://BloodParticleEffect.tscn")
+var LoveEffect = preload("res://LoveParticleEffect.tscn")
 
 func _process(delta):
 	sprite.flip_h = (face_h == 1)
@@ -40,7 +41,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
-		var bloodEffect = BloodEffect.instance()
+		var bloodEffect
+		if GameManager.ON_HEARTH_MODE:
+			bloodEffect = LoveEffect.instance()
+		else:
+			bloodEffect = BloodEffect.instance()
 		get_tree().current_scene.add_child(bloodEffect)
 		bloodEffect.global_position = global_position
 		GameManager.NPC_KILL_COUNT += 1

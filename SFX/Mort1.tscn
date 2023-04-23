@@ -4,4 +4,5 @@
 
 [node name="Mort1" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
+volume_db = -6.0
 autoplay = true

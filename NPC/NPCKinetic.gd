@@ -16,6 +16,7 @@ onready var mort2 = preload("res://SFX/Mort2.tscn")
 onready var mort3 = preload("res://SFX/Mort3.tscn")
 
 var BloodEffect = preload("res://BloodParticleEffect.tscn")
+var LoveEffect = preload("res://LoveParticleEffect.tscn")
 
 func _ready():
 	pass
@@ -46,7 +47,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
-		var bloodEffect = BloodEffect.instance()
+		var bloodEffect
+		if GameManager.ON_HEARTH_MODE:
+			bloodEffect = LoveEffect.instance()
+		else:
+			bloodEffect = BloodEffect.instance()
 		get_tree().current_scene.add_child(bloodEffect)
 		bloodEffect.global_position = global_position
 		GameManager.NPC_KILL_COUNT += 1
