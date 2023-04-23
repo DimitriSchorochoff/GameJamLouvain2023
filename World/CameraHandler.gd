@@ -4,7 +4,6 @@ const CENTER_Y = 190
 
 export var speed = 200.0
 var _velocity = Vector2.ZERO
-onready var remoteTr = $RemoteTransform2D
 
 func loadGame():
 	GameManager.GAME_STARTING = true

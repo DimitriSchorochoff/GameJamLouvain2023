@@ -11,6 +11,8 @@ export var face_h := 1.0
 onready var _velocity = direction*speed
 onready var sprite = $Sprite
 
+onready var mort = preload("res://SFX/MortRobot1.tscn")
+
 var BloodEffect = preload("res://BloodParticleEffect.tscn")
 var LoveEffect = preload("res://LoveParticleEffect.tscn")
 
@@ -49,4 +51,9 @@ func _on_Area2D_area_entered(area):
 		get_tree().current_scene.add_child(bloodEffect)
 		bloodEffect.global_position = global_position
 		GameManager.NPC_KILL_COUNT += 1
+		
+		
+		var sfx = mort.instance()
+		
+		get_tree().current_scene.add_child(sfx)
 		self.queue_free()

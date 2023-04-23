@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/robot_mort_sound.mp3-fab0cca183a0ca0f36de9dac41ebf12b.mp3str"
+
+[deps]
+
+source_file="res://SFX/robot_mort_sound.mp3"
+dest_files=[ "res://.import/robot_mort_sound.mp3-fab0cca183a0ca0f36de9dac41ebf12b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
