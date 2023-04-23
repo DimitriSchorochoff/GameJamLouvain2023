@@ -13,12 +13,12 @@
 [ext_resource path="res://Player/whiteflash.gdshader" type="Shader" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.25, 7.5 )
+extents = Vector2( 5.25, 8 )
 
 [sub_resource type="ShaderMaterial" id=15]
 shader = ExtResource( 12 )
 shader_param/color = Plane( 1, 0, 0, 1 )
-shader_param/flashing = 0.0
+shader_param/flashing = 1.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
